@@ -5,10 +5,9 @@ import com.toolschallenge.dto.response.TransacaoResponseDTO;
 import com.toolschallenge.service.TransacaoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/transacoes")
@@ -24,6 +23,13 @@ public class TransacaoController {
     @PostMapping(value = "/pagamento")
     public ResponseEntity<TransacaoResponseDTO> transacao(@RequestBody TransacaoRequestDTO dto) {
         TransacaoResponseDTO response = transacaoService.realizarPagamento(dto);
+        return ResponseEntity.ok(response);
+    }
+
+
+    @GetMapping
+    public ResponseEntity<List<TransacaoResponseDTO>> listarTransacoes() {
+        List<TransacaoResponseDTO> response = transacaoService.listarTransacoes();
         return ResponseEntity.ok(response);
     }
 

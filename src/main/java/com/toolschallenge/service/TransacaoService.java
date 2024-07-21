@@ -11,6 +11,7 @@ import com.toolschallenge.repository.TransacaoRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -22,6 +23,11 @@ public class TransacaoService {
     public TransacaoService(TransacaoRepository transacaoRepository, TransacaoConverter transacaoConverter) {
         this.transacaoRepository = transacaoRepository;
         this.transacaoConverter = transacaoConverter;
+    }
+
+
+    public List<TransacaoResponseDTO> listarTransacoes() {
+        return transacaoConverter.toListResponseDTO(transacaoRepository.listarTransacoes());
     }
 
     public TransacaoResponseDTO realizarPagamento(TransacaoRequestDTO dto) {
