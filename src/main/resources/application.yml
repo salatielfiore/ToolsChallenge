@@ -2,4 +2,4 @@ spring:
   application:
     name: toolschallenge
 server:
-  port: 8081
+  port: 8080

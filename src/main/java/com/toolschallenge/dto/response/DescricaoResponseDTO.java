@@ -1,6 +1,7 @@
 package com.toolschallenge.dto.response;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.toolschallenge.model.Status;
 
 import java.time.LocalDateTime;
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 public class DescricaoResponseDTO {
 
     private String valor;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime dataHora;
     private String estabelecimento;
     private String nsu;

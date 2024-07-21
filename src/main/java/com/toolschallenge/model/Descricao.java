@@ -1,11 +1,14 @@
 package com.toolschallenge.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Descricao {
 
     private String valor;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime dataHora;
     private String estabelecimento;
     private String nsu;
