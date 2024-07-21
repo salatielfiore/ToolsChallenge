@@ -1,7 +1,5 @@
 package com.toolschallenge.dto.response;
 
-import com.toolschallenge.model.Tipo;
-
 public class FormaPagamentoResponseDTO {
 
     private String tipo;
