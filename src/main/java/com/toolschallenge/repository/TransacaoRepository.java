@@ -1,13 +1,9 @@
 package com.toolschallenge.repository;
 
-import com.toolschallenge.exception.ValidateTransactionException;
 import com.toolschallenge.model.Transacao;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class TransacaoRepository {
@@ -22,6 +18,11 @@ public class TransacaoRepository {
 
     public List<Transacao> listarTransacoes() {
         return new ArrayList<>(transacoes.values());
+    }
+
+    public Optional<Transacao> buscarTransacaoPorId(Long id) {
+        Transacao value = transacoes.get(id);
+        return value != null ? Optional.of(value) : Optional.empty();
     }
 
 

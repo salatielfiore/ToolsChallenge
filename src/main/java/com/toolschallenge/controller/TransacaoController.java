@@ -19,6 +19,17 @@ public class TransacaoController {
         this.transacaoService = transacaoService;
     }
 
+    @GetMapping
+    public ResponseEntity<List<TransacaoResponseDTO>> listarTransacoes() {
+        List<TransacaoResponseDTO> response = transacaoService.listarTransacoes();
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TransacaoResponseDTO> buscarTransacoesPorId(@PathVariable Long id) {
+        TransacaoResponseDTO response = transacaoService.buscarTransacaoPorId(id);
+        return ResponseEntity.ok(response);
+    }
 
     @PostMapping(value = "/pagamento")
     public ResponseEntity<TransacaoResponseDTO> transacao(@RequestBody TransacaoRequestDTO dto) {
@@ -27,10 +38,5 @@ public class TransacaoController {
     }
 
 
-    @GetMapping
-    public ResponseEntity<List<TransacaoResponseDTO>> listarTransacoes() {
-        List<TransacaoResponseDTO> response = transacaoService.listarTransacoes();
-        return ResponseEntity.ok(response);
-    }
 
 }

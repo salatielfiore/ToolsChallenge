@@ -3,6 +3,7 @@ package com.toolschallenge.service;
 import com.toolschallenge.converter.TransacaoConverter;
 import com.toolschallenge.dto.request.TransacaoRequestDTO;
 import com.toolschallenge.dto.response.TransacaoResponseDTO;
+import com.toolschallenge.exception.NotFoundTransactionException;
 import com.toolschallenge.model.Descricao;
 import com.toolschallenge.model.FormaPagamento;
 import com.toolschallenge.model.Status;
@@ -12,6 +13,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -25,6 +27,11 @@ public class TransacaoService {
         this.transacaoConverter = transacaoConverter;
     }
 
+    public TransacaoResponseDTO buscarTransacaoPorId(Long id) {
+        Transacao transacao = transacaoRepository.buscarTransacaoPorId(id).orElseThrow(() ->
+                new NotFoundTransactionException("nenhuma transação encontrado para o id " + id));
+        return transacaoConverter.toResponseDTO(transacao);
+    }
 
     public List<TransacaoResponseDTO> listarTransacoes() {
         return transacaoConverter.toListResponseDTO(transacaoRepository.listarTransacoes());
