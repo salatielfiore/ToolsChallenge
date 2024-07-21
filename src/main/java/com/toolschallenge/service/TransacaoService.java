@@ -47,7 +47,7 @@ public class TransacaoService {
             throw new ValidateTransactionException("A transação já foi estornada.");
         }
         transacao.getDescricao().setStatus(Status.CANCELADO);
-        transacao = transacaoRepository.realizarPagamento(transacao);
+        transacao = transacaoRepository.realizarEstorno(transacao);
         return transacaoConverter.toResponseDTO(transacao);
     }
 

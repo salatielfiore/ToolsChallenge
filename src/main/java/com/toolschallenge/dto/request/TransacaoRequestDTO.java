@@ -1,10 +1,19 @@
 package com.toolschallenge.dto.request;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class TransacaoRequestDTO {
 
+    @NotNull(message = "O id não pode ser nulo")
     private Long id;
+    @NotNull(message = "O cartao não pode ser nulo.")
+    @NotBlank(message = "O cartao não pode ser vazio.")
     private String cartao;
+    @Valid
     private DescricaoRequestDTO descricao;
+    @Valid
     private FormaPagamentoRequestDTO formaPagamento;
 
     public Long getId() {

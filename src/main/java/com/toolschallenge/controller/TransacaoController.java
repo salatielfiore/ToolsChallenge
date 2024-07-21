@@ -3,6 +3,7 @@ package com.toolschallenge.controller;
 import com.toolschallenge.dto.request.TransacaoRequestDTO;
 import com.toolschallenge.dto.response.TransacaoResponseDTO;
 import com.toolschallenge.service.TransacaoService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +32,7 @@ public class TransacaoController {
     }
 
     @PostMapping(value = "/pagamento")
-    public ResponseEntity<TransacaoResponseDTO> transacao(@RequestBody TransacaoRequestDTO dto) {
+    public ResponseEntity<TransacaoResponseDTO> transacao(@Valid @RequestBody TransacaoRequestDTO dto) {
         TransacaoResponseDTO response = transacaoService.realizarPagamento(dto);
         return ResponseEntity.ok(response);
     }
