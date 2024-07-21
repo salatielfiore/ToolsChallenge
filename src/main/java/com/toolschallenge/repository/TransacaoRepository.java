@@ -13,13 +13,13 @@ public class TransacaoRepository {
     private static final Map<Long, Transacao> transacoes = new HashMap<>();
 
 
-    public void realizarPagamento(Transacao transacao) {
+    public Transacao realizarPagamento(Transacao transacao) {
         Transacao transacaoMap = transacoes.get(transacao.getId());
         if (transacaoMap != null) {
             throw new ValidateTransactionException("Já existe uma transação cadastrada com esse id: " + transacao.getId());
         }
         transacoes.put(transacao.getId(), transacao);
-        System.out.println(transacoes.get(transacao.getId()));
+        return transacao;
     }
 
 
