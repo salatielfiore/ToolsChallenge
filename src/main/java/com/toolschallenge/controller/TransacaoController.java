@@ -4,7 +4,6 @@ import com.toolschallenge.dto.request.TransacaoRequestDTO;
 import com.toolschallenge.dto.response.TransacaoResponseDTO;
 import com.toolschallenge.service.TransacaoService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,6 +36,10 @@ public class TransacaoController {
         return ResponseEntity.ok(response);
     }
 
-
+    @PutMapping(value = "/estorno/{id}")
+    public ResponseEntity<TransacaoResponseDTO> transacao(@PathVariable Long id) {
+        TransacaoResponseDTO response = transacaoService.realizarEstorno(id);
+        return ResponseEntity.ok(response);
+    }
 
 }

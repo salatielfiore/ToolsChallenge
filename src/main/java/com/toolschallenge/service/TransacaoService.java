@@ -4,6 +4,7 @@ import com.toolschallenge.converter.TransacaoConverter;
 import com.toolschallenge.dto.request.TransacaoRequestDTO;
 import com.toolschallenge.dto.response.TransacaoResponseDTO;
 import com.toolschallenge.exception.NotFoundTransactionException;
+import com.toolschallenge.exception.ValidateTransactionException;
 import com.toolschallenge.model.Descricao;
 import com.toolschallenge.model.FormaPagamento;
 import com.toolschallenge.model.Status;
@@ -27,13 +28,27 @@ public class TransacaoService {
     }
 
     public TransacaoResponseDTO buscarTransacaoPorId(Long id) {
-        Transacao transacao = transacaoRepository.buscarTransacaoPorId(id).orElseThrow(() ->
-                new NotFoundTransactionException("nenhuma transação encontrado para o id " + id));
+        Transacao transacao = getTransacao(id);
         return transacaoConverter.toResponseDTO(transacao);
+    }
+
+    private Transacao getTransacao(Long id) {
+        return transacaoRepository.buscarTransacaoPorId(id).orElseThrow(() ->
+                new NotFoundTransactionException("nenhuma transação encontrado para o id " + id));
     }
 
     public List<TransacaoResponseDTO> listarTransacoes() {
         return transacaoConverter.toListResponseDTO(transacaoRepository.listarTransacoes());
+    }
+
+    public TransacaoResponseDTO realizarEstorno(Long id) {
+        Transacao transacao = getTransacao(id);
+        if (transacao.getDescricao().getStatus().equals(Status.CANCELADO)) {
+            throw new ValidateTransactionException("A transação já foi estornada.");
+        }
+        transacao.getDescricao().setStatus(Status.CANCELADO);
+        transacao = transacaoRepository.realizarPagamento(transacao);
+        return transacaoConverter.toResponseDTO(transacao);
     }
 
     public TransacaoResponseDTO realizarPagamento(TransacaoRequestDTO dto) {
