@@ -1,6 +1,8 @@
 package com.toolschallenge.controller;
 
-import com.toolschallenge.dto.request.TransacaoRequestDTO;
+import com.toolschallenge.dto.request.SingleTransacaoRequestDTO;
+import com.toolschallenge.dto.response.MultipleTransacaoResponseDTO;
+import com.toolschallenge.dto.response.SingleTransacaoResponseDTO;
 import com.toolschallenge.dto.response.TransacaoResponseDTO;
 import com.toolschallenge.service.TransacaoService;
 import jakarta.validation.Valid;
@@ -20,27 +22,27 @@ public class TransacaoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TransacaoResponseDTO>> listarTransacoes() {
+    public ResponseEntity<MultipleTransacaoResponseDTO> listarTransacoes() {
         List<TransacaoResponseDTO> response = transacaoService.listarTransacoes();
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new MultipleTransacaoResponseDTO(response));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TransacaoResponseDTO> buscarTransacoesPorId(@PathVariable Long id) {
+    public ResponseEntity<SingleTransacaoResponseDTO> buscarTransacoesPorId(@PathVariable Long id) {
         TransacaoResponseDTO response = transacaoService.buscarTransacaoPorId(id);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new SingleTransacaoResponseDTO(response));
     }
 
     @PostMapping(value = "/pagamento")
-    public ResponseEntity<TransacaoResponseDTO> transacao(@Valid @RequestBody TransacaoRequestDTO dto) {
-        TransacaoResponseDTO response = transacaoService.realizarPagamento(dto);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<SingleTransacaoResponseDTO> transacao(@Valid @RequestBody SingleTransacaoRequestDTO dto) {
+        TransacaoResponseDTO response = transacaoService.realizarPagamento(dto.getTransacao());
+        return ResponseEntity.ok(new SingleTransacaoResponseDTO(response));
     }
 
     @PutMapping(value = "/estorno/{id}")
-    public ResponseEntity<TransacaoResponseDTO> transacao(@PathVariable Long id) {
+    public ResponseEntity<SingleTransacaoResponseDTO> transacao(@PathVariable Long id) {
         TransacaoResponseDTO response = transacaoService.realizarEstorno(id);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new SingleTransacaoResponseDTO(response));
     }
 
 }

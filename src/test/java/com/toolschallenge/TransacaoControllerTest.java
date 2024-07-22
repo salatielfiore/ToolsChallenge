@@ -1,7 +1,10 @@
 package com.toolschallenge;
 
 import com.toolschallenge.controller.TransacaoController;
+import com.toolschallenge.dto.request.SingleTransacaoRequestDTO;
 import com.toolschallenge.dto.request.TransacaoRequestDTO;
+import com.toolschallenge.dto.response.MultipleTransacaoResponseDTO;
+import com.toolschallenge.dto.response.SingleTransacaoResponseDTO;
 import com.toolschallenge.dto.response.TransacaoResponseDTO;
 import com.toolschallenge.service.TransacaoService;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,12 +43,13 @@ class TransacaoControllerTest {
 
         when(transacaoService.listarTransacoes()).thenReturn(List.of(responseDTO));
 
-        ResponseEntity<List<TransacaoResponseDTO>> response = transacaoController.listarTransacoes();
+        ResponseEntity<MultipleTransacaoResponseDTO> response = transacaoController.listarTransacoes();
         assertNotNull(response);
         assertEquals(200, response.getStatusCode().value());
         assertNotNull(response.getBody());
-        assertEquals(1, response.getBody().size());
-        assertEquals("1234-5678-9101-1121", response.getBody().get(0).getCartao());
+        assertNotNull(response.getBody().getTransacao());
+        assertEquals(1, response.getBody().getTransacao().size());
+        assertEquals("1234-5678-9101-1121", response.getBody().getTransacao().get(0).getCartao());
     }
 
     @Test
@@ -56,27 +60,29 @@ class TransacaoControllerTest {
 
         when(transacaoService.buscarTransacaoPorId(anyLong())).thenReturn(responseDTO);
 
-        ResponseEntity<TransacaoResponseDTO> response = transacaoController.buscarTransacoesPorId(1L);
+        ResponseEntity<SingleTransacaoResponseDTO> response = transacaoController.buscarTransacoesPorId(1L);
         assertNotNull(response);
         assertEquals(200, response.getStatusCode().value());
         assertNotNull(response.getBody());
-        assertEquals("1234-5678-9101-1121", response.getBody().getCartao());
+        assertEquals("1234-5678-9101-1121", response.getBody().getTransacao().getCartao());
     }
 
     @Test
     void testTransacaoPagamento() {
-        TransacaoRequestDTO requestDTO = new TransacaoRequestDTO();
+        SingleTransacaoRequestDTO requestDTO = new SingleTransacaoRequestDTO();
         TransacaoResponseDTO responseDTO = new TransacaoResponseDTO();
         responseDTO.setId(1L);
         responseDTO.setCartao("1234-5678-9101-1121");
 
         when(transacaoService.realizarPagamento(any(TransacaoRequestDTO.class))).thenReturn(responseDTO);
 
-        ResponseEntity<TransacaoResponseDTO> response = transacaoController.transacao(requestDTO);
+        requestDTO.setTransacao(new TransacaoRequestDTO());
+
+        ResponseEntity<SingleTransacaoResponseDTO> response = transacaoController.transacao(requestDTO);
         assertNotNull(response);
         assertEquals(200, response.getStatusCode().value());
         assertNotNull(response.getBody());
-        assertEquals("1234-5678-9101-1121", response.getBody().getCartao());
+        assertEquals("1234-5678-9101-1121", response.getBody().getTransacao().getCartao());
     }
 
     @Test
@@ -87,10 +93,10 @@ class TransacaoControllerTest {
 
         when(transacaoService.realizarEstorno(anyLong())).thenReturn(responseDTO);
 
-        ResponseEntity<TransacaoResponseDTO> response = transacaoController.transacao(1L);
+        ResponseEntity<SingleTransacaoResponseDTO> response = transacaoController.transacao(1L);
         assertNotNull(response);
         assertEquals(200, response.getStatusCode().value());
         assertNotNull(response.getBody());
-        assertEquals("1234-5678-9101-1121", response.getBody().getCartao());
+        assertEquals("1234-5678-9101-1121", response.getBody().getTransacao().getCartao());
     }
 }
