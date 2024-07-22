@@ -11,8 +11,10 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Classe de configuração para o ModelMapper. Esta classe define a configuração necessária para utilizar o ModelMapper na aplicação.
+ * <p>
+ * O ModelMapper é uma biblioteca que facilita o mapeamento de objetos entre diferentes camadas da aplicação, como entidades e DTOs.
  *
- * @author Salatiel fiore
+ * @author Salatiel Fiore
  */
 @Configuration
 public class ModelMapperConfig {

@@ -6,6 +6,14 @@ import com.toolschallenge.model.Status;
 
 import java.time.LocalDateTime;
 
+/**
+ * DTO (Data Transfer Object) para a descrição da transação.
+ * <p>
+ * Esta classe é utilizada para transferir dados de resposta relacionados à descrição de uma transação.
+ * Contém todos os campos necessários para representar uma descrição completa.
+ *
+ * @author Salatiel Fiore
+ */
 public class DescricaoResponseDTO {
 
     private String valor;
@@ -15,9 +23,6 @@ public class DescricaoResponseDTO {
     private String nsu;
     private String codigoAutorizacao;
     private Status status;
-
-    public DescricaoResponseDTO() {
-    }
 
     public String getValor() {
         return valor;

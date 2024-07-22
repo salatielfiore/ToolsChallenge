@@ -7,6 +7,14 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
+/**
+ * DTO (Data Transfer Object) para a descrição de uma transação.
+ * <p>
+ * Esta classe é utilizada para transferir dados de entrada para a descrição de uma transação.
+ * Contém campos obrigatórios e suas validações.
+ *
+ * @author Salatiel Fiore
+ */
 public class DescricaoRequestDTO {
 
     @NotNull(message = "O valor não pode ser nulo.")
@@ -18,9 +26,6 @@ public class DescricaoRequestDTO {
     @NotNull(message = "O estabelecimento não pode ser nulo.")
     @NotBlank(message = "O estabelecimento não pode ser vazio.")
     private String estabelecimento;
-
-    public DescricaoRequestDTO() {
-    }
 
     public String getValor() {
         return valor;

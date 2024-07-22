@@ -1,5 +1,13 @@
 package com.toolschallenge.dto.response;
 
+/**
+ * DTO (Data Transfer Object) para a transação.
+ * <p>
+ * Esta classe é utilizada para transferir dados de resposta relacionados a uma transação.
+ * Contém informações sobre a transação, incluindo o identificador, o cartão, a descrição e a forma de pagamento.
+ *
+ * @author Salatiel Fiore
+ */
 public class TransacaoResponseDTO {
 
     private Long id;

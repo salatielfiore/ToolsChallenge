@@ -1,12 +1,14 @@
 # Projeto de Transações
 
 ## Descrição
-Este projeto é um serviço de gerenciamento de transações financeiras. 
-Ele permite a criação, listagem, consulta e estorno de transações utilizando 
-um sistema RESTful. As transações contêm informações sobre o cartão utilizado, 
+
+Este projeto é um serviço de gerenciamento de transações financeiras.
+Ele permite a criação, listagem, consulta e estorno de transações utilizando
+um sistema RESTful. As transações contêm informações sobre o cartão utilizado,
 a descrição da transação, e a forma de pagamento.
 
 ## Estrutura do Projeto
+
 - config: Configurações do projeto.
 - controller: Gerencia as requisições HTTP e chama os serviços apropriados.
 - converter: Conversores de dados entre diferentes formatos.
@@ -16,12 +18,15 @@ a descrição da transação, e a forma de pagamento.
 - model: Define as entidades do sistema.
 - repository: Interface para acesso aos dados persistidos.
 - service: Contém a lógica de negócios.
-  
+
 ## Endpoints
+
 ### Listar Transações
+
 - Endpoint: GET /transacoes
 - Descrição: Retorna uma lista de todas as transações.
 - Resposta:
+
 ````json
 {
   "transacao": [
@@ -44,10 +49,13 @@ a descrição da transação, e a forma de pagamento.
   ]
 }
 ````
+
 ### Buscar Transação por ID
+
 - Endpoint: GET /transacoes/{id}
 - Descrição: Retorna os detalhes de uma transação específica.
 - Resposta:
+
 ````json
 {
   "transacao": [
@@ -70,10 +78,13 @@ a descrição da transação, e a forma de pagamento.
   ]
 }
 ````
+
 ### Realizar Pagamento
+
 - Endpoint: POST /transacoes/pagamento
 - Descrição: Cria uma nova transação de pagamento.
 - Requisição:
+
 ````json
 {
   "transacao": [
@@ -93,7 +104,9 @@ a descrição da transação, e a forma de pagamento.
   ]
 }
 ````
+
 - Resposta:
+
 ````json
 {
   "transacao": [
@@ -116,10 +129,13 @@ a descrição da transação, e a forma de pagamento.
   ]
 }
 ````
+
 ### Realizar Estorno
+
 - Endpoint: PUT /transacoes/estorno/{id}
 - Descrição: Realiza o estorno de uma transação existente.
 - Resposta:
+
 ````json
 {
   "transacao": {
@@ -142,11 +158,14 @@ a descrição da transação, e a forma de pagamento.
 ````
 
 ## Testes
-Os testes unitários foram escritos para garantir que os endpoints do controlador 
+
+Os testes unitários foram escritos para garantir que os endpoints do controlador
 e os métodos do repositório estão funcionando corretamente. Utilizamos o JUnit para os testes.
 
 ### Testes de Controller
+
 #### Exemplo de Teste para Listar Transações
+
 ````java
 import com.toolschallenge.dto.response.MultipleTransacaoResponseDTO;
 import com.toolschallenge.dto.response.TransacaoResponseDTO;
@@ -195,8 +214,11 @@ class TransacaoControllerTest {
     }
 }
 ````
+
 ### Testes de Repositório
+
 #### Exemplo de Teste para Realizar Pagamento
+
 ````java
 package com.toolschallenge;
 
@@ -245,17 +267,20 @@ class TransacaoRepositoryTest {
     }
 }
 ````
+
 ## Estrutura dos Testes
+
 1. Configuração: Inicializamos os mocks usando MockitoAnnotations.openMocks(this);
-para os testes de controlador, e configuramos os objetos de teste no método setUp() 
-para os testes de repositório.
-2. Testes Unitários: Escrevemos testes para cada método nos controladores e repositórios, 
-garantindo que os serviços chamados retornem as respostas esperadas 
-e as respostas HTTP sejam corretas.
-3. Verificações: Utilizamos assertNotNull, assertEquals, assertFalse e assertTrue 
-para validar o retorno das chamadas aos métodos dos controladores e repositórios.
+   para os testes de controlador, e configuramos os objetos de teste no método setUp()
+   para os testes de repositório.
+2. Testes Unitários: Escrevemos testes para cada método nos controladores e repositórios,
+   garantindo que os serviços chamados retornem as respostas esperadas
+   e as respostas HTTP sejam corretas.
+3. Verificações: Utilizamos assertNotNull, assertEquals, assertFalse e assertTrue
+   para validar o retorno das chamadas aos métodos dos controladores e repositórios.
 
 ## Tecnologias Utilizadas
+
 - Java
 - Spring Boot
 - JUnit
@@ -263,14 +288,18 @@ para validar o retorno das chamadas aos métodos dos controladores e repositóri
 - Jackson
 
 ## Como Executar o Projeto
+
 1. Clone o repositório.
-2. Navegue até o diretório do projeto. 
-3. Execute o comando mvn spring-boot:run para iniciar o serviço. 
+2. Navegue até o diretório do projeto.
+3. Execute o comando mvn spring-boot:run para iniciar o serviço.
 4. Os endpoints estarão disponíveis em http://localhost:8080/transacoes.
 
 ## Executando os Testes
+
 Para executar os testes, use o comando:
+
 ````shell
 mvn test
 ````
+
 Isso irá rodar todos os testes unitários definidos para o projeto.

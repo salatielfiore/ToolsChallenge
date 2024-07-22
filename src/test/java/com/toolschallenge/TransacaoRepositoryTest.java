@@ -10,11 +10,22 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Testes unitários para o repositório {@link TransacaoRepository}.
+ * <p>
+ * Este conjunto de testes verifica o comportamento dos métodos do repositório {@link TransacaoRepository}.
+ * O objetivo é garantir que os métodos de pagamento, estorno, listagem e busca por ID estejam funcionando corretamente.
+ *
+ * @author Salatiel Fiore
+ */
 class TransacaoRepositoryTest {
 
     private TransacaoRepository transacaoRepository;
     private Transacao transacao;
 
+    /**
+     * Configuração inicial dos testes. Cria uma instância do repositório e uma transação com dados de exemplo.
+     */
     @BeforeEach
     void setUp() {
         transacaoRepository = new TransacaoRepository();
@@ -37,6 +48,10 @@ class TransacaoRepositoryTest {
         transacao.setFormaPagamento(formaPagamento);
     }
 
+    /**
+     * Testa o método {@link TransacaoRepository#realizarPagamento(Transacao)}.
+     * Verifica se o método realiza o pagamento corretamente e retorna a transação.
+     */
     @Test
     void testRealizarPagamento() {
         Transacao resultado = transacaoRepository.realizarPagamento(transacao);
@@ -44,6 +59,10 @@ class TransacaoRepositoryTest {
         assertEquals(transacao.getId(), resultado.getId());
     }
 
+    /**
+     * Testa o método {@link TransacaoRepository#realizarEstorno(Transacao)}.
+     * Verifica se o método realiza o estorno corretamente e retorna a transação.
+     */
     @Test
     void testRealizarEstorno() {
         Transacao resultado = transacaoRepository.realizarEstorno(transacao);
@@ -51,12 +70,20 @@ class TransacaoRepositoryTest {
         assertEquals(transacao.getId(), resultado.getId());
     }
 
+    /**
+     * Testa o método {@link TransacaoRepository#listarTransacoes()}.
+     * Verifica se o método lista as transações corretamente após realizar um pagamento.
+     */
     @Test
     void testListarTransacoes() {
         transacaoRepository.realizarPagamento(transacao);
         assertFalse(transacaoRepository.listarTransacoes().isEmpty());
     }
 
+    /**
+     * Testa o método {@link TransacaoRepository#buscarTransacaoPorId(Long)}.
+     * Verifica se o método busca uma transação pelo ID corretamente.
+     */
     @Test
     void testBuscarTransacaoPorId() {
         transacaoRepository.realizarPagamento(transacao);

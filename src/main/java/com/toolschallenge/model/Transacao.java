@@ -2,6 +2,14 @@ package com.toolschallenge.model;
 
 import java.util.Objects;
 
+/**
+ * Representa uma transação financeira.
+ * <p>
+ * Esta classe encapsula as informações relacionadas a uma transação, incluindo o identificador, número do cartão,
+ * detalhes da descrição e forma de pagamento.
+ *
+ * @author Salatiel Fiore
+ */
 public class Transacao {
 
     private Long id;

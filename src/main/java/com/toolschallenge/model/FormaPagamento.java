@@ -2,13 +2,18 @@ package com.toolschallenge.model;
 
 import java.util.Objects;
 
+/**
+ * Representa a forma de pagamento de uma transação.
+ * <p>
+ * Esta classe contém informações sobre a forma de pagamento utilizada em uma transação, incluindo
+ * o tipo de pagamento e o número de parcelas.
+ *
+ * @author Salatiel Fiore
+ */
 public class FormaPagamento {
 
     private Tipo tipo;
     private String parcelas;
-
-    public FormaPagamento() {
-    }
 
     public Tipo getTipo() {
         return tipo;

@@ -5,6 +5,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+/**
+ * Representa a descrição de uma transação.
+ * <p>
+ * Esta classe contém informações detalhadas sobre uma transação, como valor, data e hora,
+ * estabelecimento onde a transação foi realizada, e informações adicionais como NSU e código
+ * de autorização. Também inclui o status da transação.
+ *
+ * @author Salatiel Fiore
+ */
 public class Descricao {
 
     private String valor;
@@ -14,9 +23,6 @@ public class Descricao {
     private String nsu;
     private String codigoAutorizacao;
     private Status status;
-
-    public Descricao() {
-    }
 
     public String getValor() {
         return valor;

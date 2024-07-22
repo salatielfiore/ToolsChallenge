@@ -22,6 +22,15 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
+/**
+ * Testes unitários para o controlador {@link TransacaoController}.
+ * <p>
+ * Este conjunto de testes verifica o comportamento dos métodos do controlador {@link TransacaoController}.
+ * Utiliza o Mockito para simular as interações com o serviço {@link TransacaoService} e validar as respostas
+ * do controlador.
+ *
+ * @author Salatiel Fiore
+ */
 class TransacaoControllerTest {
 
     @InjectMocks
@@ -30,11 +39,19 @@ class TransacaoControllerTest {
     @Mock
     private TransacaoService transacaoService;
 
+    /**
+     * Configuração inicial dos mocks antes de cada teste.
+     * Inicializa os mocks com a anotação {@link MockitoAnnotations}.
+     */
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
+    /**
+     * Testa o método {@link TransacaoController#listarTransacoes()}.
+     * Verifica se o controlador retorna a lista de transações corretamente.
+     */
     @Test
     void testListarTransacoes() {
         TransacaoResponseDTO responseDTO = new TransacaoResponseDTO();
@@ -52,6 +69,10 @@ class TransacaoControllerTest {
         assertEquals("1234-5678-9101-1121", response.getBody().getTransacao().get(0).getCartao());
     }
 
+    /**
+     * Testa o método {@link TransacaoController#buscarTransacoesPorId(Long)}.
+     * Verifica se o controlador retorna a transação específica pelo ID corretamente.
+     */
     @Test
     void testBuscarTransacoesPorId() {
         TransacaoResponseDTO responseDTO = new TransacaoResponseDTO();
@@ -67,6 +88,10 @@ class TransacaoControllerTest {
         assertEquals("1234-5678-9101-1121", response.getBody().getTransacao().getCartao());
     }
 
+    /**
+     * Testa o método {@link TransacaoController#transacao(SingleTransacaoRequestDTO)}.
+     * Verifica se o controlador realiza o pagamento e retorna a transação corretamente.
+     */
     @Test
     void testTransacaoPagamento() {
         SingleTransacaoRequestDTO requestDTO = new SingleTransacaoRequestDTO();
@@ -85,6 +110,10 @@ class TransacaoControllerTest {
         assertEquals("1234-5678-9101-1121", response.getBody().getTransacao().getCartao());
     }
 
+    /**
+     * Testa o método {@link TransacaoController#transacao(Long)}.
+     * Verifica se o controlador realiza o estorno e retorna a transação corretamente.
+     */
     @Test
     void testTransacaoEstorno() {
         TransacaoResponseDTO responseDTO = new TransacaoResponseDTO();

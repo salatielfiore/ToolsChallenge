@@ -4,6 +4,14 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+/**
+ * DTO (Data Transfer Object) para a transação.
+ * <p>
+ * Esta classe é utilizada para transferir dados de entrada relacionados a uma transação.
+ * Contém campos obrigatórios e suas validações, além de DTOs internos para descrição e forma de pagamento.
+ *
+ * @author Salatiel Fiore
+ */
 public class TransacaoRequestDTO {
 
     @NotNull(message = "O id não pode ser nulo")
