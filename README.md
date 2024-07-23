@@ -58,24 +58,22 @@ a descrição da transação, e a forma de pagamento.
 
 ````json
 {
-  "transacao": [
-    {
+   "transacao":{
       "id": 1,
       "cartao": "1234-5678-9101-1121",
       "descricao": {
-        "valor": "100.00",
-        "dataHora": "21/07/2024 12:00:00",
-        "estabelecimento": "Loja XYZ",
-        "nsu": "123456",
-        "codigoAutorizacao": "654321",
-        "status": "APROVADO"
+         "valor": "100.00",
+         "dataHora": "21/07/2024 12:00:00",
+         "estabelecimento": "Loja XYZ",
+         "nsu": "123456",
+         "codigoAutorizacao": "654321",
+         "status": "APROVADO"
       },
       "formaPagamento": {
-        "tipo": "AVISTA",
-        "parcelas": "1"
+         "tipo": "AVISTA",
+         "parcelas": "1"
       }
-    }
-  ]
+   }
 }
 ````
 
@@ -87,21 +85,19 @@ a descrição da transação, e a forma de pagamento.
 
 ````json
 {
-  "transacao": [
-    {
-      "id": 1,
+   "transacao": {
       "cartao": "1234-5678-9101-1121",
+      "id": 1,
       "descricao": {
-        "valor": "100.00",
-        "dataHora": "21/07/2024 12:00:00",
-        "estabelecimento": "Loja XYZ"
+         "valor": "100.00",
+         "dataHora": "21/07/2024 12:00:00",
+         "estabelecimento": "Loja XYZ"
       },
       "formaPagamento": {
-        "tipo": "AVISTA",
-        "parcelas": "1"
+         "tipo": "AVISTA",
+         "parcelas": "1"
       }
-    }
-  ]
+   }
 }
 ````
 
@@ -109,8 +105,7 @@ a descrição da transação, e a forma de pagamento.
 
 ````json
 {
-  "transacao": [
-    {
+  "transacao":{
       "id": 1,
       "cartao": "1234-5678-9101-1121",
       "descricao": {
@@ -126,7 +121,6 @@ a descrição da transação, e a forma de pagamento.
         "parcelas": "1"
       }
     }
-  ]
 }
 ````
 
